@@ -74,12 +74,12 @@ const executeInstruction = () => {
   let instruction = code[location];
 
   while (instruction !== 9) {
-    if (instruction in instructions) {
-      location = instructions[instruction](code, location);
-      instruction = code[location];
-    } else {
+    if (!instruction in instructions) {
       return "Invalid Instruction";
     }
+
+    location = instructions[instruction](code, location);
+    instruction = code[location];
   }
 
   return code;
